@@ -1,0 +1,13 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "short-uuid": "^4.2.0"
+  },
+  "scripts": {
+    "start": "node main.js"
+  }
+}
