@@ -1,6 +1,7 @@
 {
   "name": "insomnia-plugin-easy-share-server",
-  "version": "0.0.1",
+  "version": "0.0.3",
+  "description": "Free and Opensource server application for insomnia easy share plugin",
   "main": "main.js",
   "license": "MIT",
   "author": "Thilina Lakshan <thilinalakshanmail@gmail.com>",
