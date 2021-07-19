@@ -1,5 +1,4 @@
 const express = require("express")
-const short = require("short-uuid")
 
 const app = express()
 
@@ -8,9 +7,20 @@ const PORT = 8080
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+/**
+ * Utils
+ * @param messages
+ */
+const log = (...messages) => console.log(new Date(), ...messages)
+const date_diff_in_minute = (date1, date2) => Math.abs(Math.floor((date1 - date2)/60_000));
+
+/**
+ * Storage System
+ */
 const STORAGE = new (class {
     constructor() {
         this.data = {}
+        log("INITIATE STORAGE")
     }
 
     is_exists(id) {
@@ -30,6 +40,7 @@ const STORAGE = new (class {
         while (this.is_exists(id)) id = this.generate_id()
         const pwd = this.generate_pwd()
         this.data[id] = {pwd, reserved_time: new Date()}
+        log("SLOT RESERVED", `ID:${id}`, `PWD:${pwd}`)
         return {id, pwd}
     }
 
@@ -37,6 +48,7 @@ const STORAGE = new (class {
         if (this.is_exists(id)) {
             const slot = this.data[id]
             if (slot.updated_time) {
+                log("READ SLOT", `ID:${id}`)
                 return slot.data
             }
         }
@@ -50,6 +62,7 @@ const STORAGE = new (class {
             if (slot.pwd === pwd) {
                 this.data[id].data = data
                 this.data[id].updated_time = new Date()
+                log("SLOT UPDATED", `ID:${id}`)
                 return true
             } else {
                 return false
@@ -57,8 +70,26 @@ const STORAGE = new (class {
         } else {
             const now = new Date()
             this.data[id] = {id, pwd, data, reserved_time: now, updated_time: now}
+            log("SLOT CREATED", `ID:${id}`)
             return true
         }
+    }
+
+    clean_older_slots = () => {
+        const current_time = new Date()
+
+        for (let slot_key of Object.keys(this.data)) {
+            const slot = this.data[slot_key]
+            if (
+                (slot.updated_time && (date_diff_in_minute(slot.updated_time, slot.reserved_time) > 10)) ||
+                (!slot.updated_time && (date_diff_in_minute(current_time, slot.reserved_time) > 5))
+            ) {
+                log("REMOVING SLOT", slot_key)
+                delete this.data[slot_key]
+            }
+        }
+
+        log("IN MEMORY REPORT", String(Object.keys(this.data)))
     }
 
 })()
@@ -101,5 +132,5 @@ app.post('/:id', (req, res) => {
     res.status(400).json({message: "Bad request details are missing"})
 })
 
-
-app.listen(PORT, () => console.log(`Listening... ${PORT}`))
+setInterval(STORAGE.clean_older_slots, 10*60_000)
+app.listen(PORT, () => log("STARTED API GATEWAY AT", `PORT:${PORT}`))
