@@ -1,8 +1,9 @@
 {
-  "name": "server",
-  "version": "1.0.0",
+  "name": "insomnia-plugin-easy-share-server",
+  "version": "0.0.1",
   "main": "main.js",
   "license": "MIT",
+  "author": "Thilina Lakshan <thilinalakshanmail@gmail.com>",
   "dependencies": {
     "express": "^4.17.1"
   },
