@@ -1,4 +1,5 @@
 const express = require("express")
+const stream = require("stream")
 
 const app = express()
 
@@ -115,6 +116,27 @@ app.get('/:id', (req, res) => {
         message: "Success"
     })
 
+})
+
+app.get('/file/:id', (req, res) => {
+    const id = req.params.id
+    const data = STORAGE.read(id)
+
+    if (data === null) {
+        res.status(404).json({
+            message: "Not Found"
+        })
+        return
+    }
+
+    const fileContents = Buffer.from(data, "utf-8");
+    const readStream = new stream.PassThrough();
+    readStream.end(fileContents);
+
+    res.set('Content-disposition', `attachment; filename=Insomnia-${id}.json`);
+    res.set('Content-Type', 'application/json');
+
+    readStream.pipe(res);
 })
 
 app.post('/:id', (req, res) => {
