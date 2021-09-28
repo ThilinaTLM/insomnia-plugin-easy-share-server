@@ -154,5 +154,5 @@ app.post('/:id', (req, res) => {
     res.status(400).json({message: "Bad request details are missing"})
 })
 
-setInterval(STORAGE.clean_older_slots, 10*60_000)
+// setInterval(STORAGE.clean_older_slots, 10*60_000)
 app.listen(PORT, () => log("STARTED API GATEWAY AT", `PORT:${PORT}`))
