@@ -1,5 +1,5 @@
 # NOTE
 Backend for insomnia-plugin-easy-share
 
-Features
+To do
   * Persistent data storage
