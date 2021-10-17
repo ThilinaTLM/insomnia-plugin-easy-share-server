@@ -43,7 +43,7 @@ git push origin branch-name
 * Wait for your PR review and merge approval!
 * __Star this repository__ if you had fun!
 
-## Choose from these tasks
+## Do these tasks 
 ### 1. Add your name
 Add your name to the `CONTRIBUTORS.md` file using the below convention:
 
