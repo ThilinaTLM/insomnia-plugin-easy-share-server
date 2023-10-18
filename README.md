@@ -1,29 +1,28 @@
 # NOTE
-Backend for insomnia-plugin-easy-share
+Backend for the Insomnia Plugin Easy Share
 
-To do
-  * Persistent data storage
+To Do
+* Implement persistent data storage
 
-You can now contributor to this project for Hacktoberfest
+You can now contribute to this project for Hacktoberfest
 
 ## What is Hacktoberfest? 🎃
-A month-long celebration from October 1st - 31st sponsored by [Digital Ocean](https://hacktoberfest.digitalocean.com/) and [GitHub](https://github.com/blog/2433-celebrate-open-source-this-october-with-hacktoberfest) to get people involved in [Open Source](https://github.com/open-source). Create your very first pull request to any public repository on GitHub and contribute to the open source developer community.
+Hacktoberfest is a month-long celebration from October 1st to 31st, sponsored by [Digital Ocean](https://hacktoberfest.digitalocean.com/) and [GitHub](https://github.com/blog/2433-celebrate-open-source-this-october-with-hacktoberfest), aimed at getting people involved in [Open Source](https://github.com/open-source). Create your very first pull request to any public repository on GitHub and contribute to the open source developer community.
 
-[https://hacktoberfest.digitalocean.com/](https://hacktoberfest.digitalocean.com/)
+[Learn more about Hacktoberfest](https://hacktoberfest.digitalocean.com/)
 
-## How to contribute to this project
-Here is how you contribute to this project:
+## How to Contribute to this Project
+Here is how you can contribute to this project:
 * Resolve the Good First Issues
 * Add your name to the `CONTRIBUTORS.md` file
 
-## Getting started
-* Fork this repository (Click the Fork button in the top right of this page, click your Profile Image)
-* Clone your fork down to your local machine
+## Getting Started
+* Fork this repository (Click the "Fork" button in the top right of this page, click your Profile Image)
+* Clone your fork to your local machine
 
-```markdown
+```shell
 git clone https://github.com/ThilinaTLM/insomnia-plugin-easy-share-server.git
 ```
-
 * Create a branch
 
 ```markdown
